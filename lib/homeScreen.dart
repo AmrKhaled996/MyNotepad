@@ -148,16 +148,25 @@ class homeScreenState extends State<HomeScreen> {
                                         });
                                       },
                                     ),
+                                    Expanded(
+                                      child:
                                     Container(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 50,
+                                        minHeight: 40,
+                                        // maxWidth: 100,
+                                      ),
                                       alignment: Alignment(-1, 0),
                                       child: Text(
                                           TODOLists[index].tasks[i].content,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                             color: const Color.fromARGB(
                                                 255, 0, 0, 0),
                                             fontSize: 20,
                                           )),
                                     ),
+                                  )
                                   ]);
                                 }),
                             // )
@@ -169,7 +178,7 @@ class homeScreenState extends State<HomeScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
-                  child: Row(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       //edit data from hive and reload the notes
@@ -229,6 +238,7 @@ class homeScreenState extends State<HomeScreen> {
         itemCount: notes.length,
         itemBuilder: (context, index) {
           return Container(
+            
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 10,
@@ -392,6 +402,12 @@ class homeScreenState extends State<HomeScreen> {
           side: BorderSide(color: Colors.amber[400]!, width: 2),
         ),
       ),
+
+
+
+
+
+
       //list of notes or list of tasks
       body:
       Column(children: [
@@ -404,6 +420,9 @@ class homeScreenState extends State<HomeScreen> {
               segmentbarIndex = value;
             });
           },
+          selectedColor: Colors.blue[400],
+          borderColor:Colors.blue[400] ,
+          pressedColor:const Color.fromARGB(15, 66, 164, 245) ,
           children: const {
             0: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -419,7 +438,7 @@ class homeScreenState extends State<HomeScreen> {
       ),
       Container(
         constraints: BoxConstraints(
-          maxHeight: 500,
+          maxHeight: 580,
           minHeight: 100,
         ),
         child: 

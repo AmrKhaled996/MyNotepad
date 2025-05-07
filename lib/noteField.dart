@@ -54,13 +54,6 @@ class NotefieldState extends State<Notefield> {
     }
   }
 
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _contentController.dispose();
-    super.dispose();
-  }
-
   TextEditingController tagsController = TextEditingController();
   String selectedTag = ''; // To store selected tags
 
@@ -182,11 +175,17 @@ class NotefieldState extends State<Notefield> {
               ),
             ),
             Container(
-              height: 300,
+              constraints: BoxConstraints(
+                          maxHeight: 400,
+                          minHeight: 40
+                          
+                          ),
+              
               width: double.infinity,
               // color: Colors.red,
 
               child: ListView.builder(
+                shrinkWrap: true,
                   itemCount: tasks.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Row(children: [
@@ -199,16 +198,25 @@ class NotefieldState extends State<Notefield> {
                           });
                         },
                       ),
+                      Expanded(child: 
+                      
                       Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 350,
+                          minWidth: 50,
+                        ),
+                        
+                        
                         alignment: Alignment(-1, 0),
                         child: Text(tasks[index].content,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: 20,
                             )),
+                      )
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 50),
+                        padding: EdgeInsets.only(left: 20 ,right: 20),
                         alignment: Alignment(-1, 0),
                         child: IconButton(
                             onPressed: () {
