@@ -15,14 +15,19 @@ class HiveService {
 
   HiveService._internal(); //means  it is a private constructor 
 
+
   Future<void> init() async {
     await Hive.initFlutter();
+
     Hive.registerAdapter(NotesAdapter());
     Hive.registerAdapter(TasksAdapter());
     Hive.registerAdapter(TaskAdapter());
+
     _notesBox = await Hive.openBox('notebox');
     _tasksBox = await Hive.openBox('taskbox');
+
   }
+
 
 
   List<Notes> getNotes() => _notesBox.values.toList();
@@ -60,10 +65,13 @@ class HiveService {
   Future<void> deleteTask(String id) async => await _tasksBox.delete(id);
 
   List<Tasks> searchTasks(String text) {
+
     final lowerText = text.toLowerCase();
     return _tasksBox.values.where((task) =>
       task.title.toLowerCase().contains(lowerText)    ||
       task.tag.toLowerCase().contains(lowerText) 
+      
     ).toList();
+
   }
 }

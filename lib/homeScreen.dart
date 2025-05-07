@@ -27,6 +27,7 @@ class homeScreenState extends State<HomeScreen> {
 
   //by deepseek : formated tasks to string to share it
 
+
   String _formatTaskListForSharing(Tasks taskList) {
     final buffer = StringBuffer();
     buffer.writeln('${taskList.title}\n');
@@ -36,7 +37,10 @@ class homeScreenState extends State<HomeScreen> {
     }
 
     return buffer.toString();
+    
   }
+
+
 
   void initState() {
     super.initState();

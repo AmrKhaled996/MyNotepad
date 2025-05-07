@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:test_work_sapce/hiveDatabase.dart';
-// import 'package:test_work_sapce/TagsInput.dart';
+
 
 import 'package:test_work_sapce/notes.dart';
 import 'package:test_work_sapce/tasks.dart';
@@ -25,9 +25,9 @@ class NotefieldState extends State<Notefield> {
   Box<Notes> _notesBox = Hive.box('noteBox');
   Box<Tasks> _tasksBox = Hive.box('taskBox');
 
-  List<Task> tasks = []; // List to store tasks
+  List<Task> tasks = []; //  to store tasks
 
-  List<String> newTasks = []; // Variable to store new task input
+  List<String> newTasks = []; //  to store new task input
 
   bool? isChecked = false;
 
@@ -87,7 +87,7 @@ class NotefieldState extends State<Notefield> {
                   padding: const EdgeInsets.only(top: 35),
                   height: 0.8,
                   color: const Color.fromARGB(
-                      255, 0, 0, 0), // Set the color of the underline
+                      255, 0, 0, 0),
                 ),
                 items: const [
                   DropdownMenuItem(
@@ -182,7 +182,7 @@ class NotefieldState extends State<Notefield> {
                           ),
               
               width: double.infinity,
-              // color: Colors.red,
+              
 
               child: ListView.builder(
                 shrinkWrap: true,
@@ -282,7 +282,7 @@ class NotefieldState extends State<Notefield> {
     }
 
     return Scaffold(
-      // Changed from MaterialApp to Scaffold
+      
       appBar: AppBar(backgroundColor: const Color.fromARGB(255, 252, 193, 16)),
       body: Column(
         children: [
@@ -307,14 +307,14 @@ class NotefieldState extends State<Notefield> {
           ),
           buildTagsInput(),
 
-          // buildNoteInput(),]
+          
 
           (selectedTag == 'Shopping' || selectedTag == 'Tasks')
               ? buildToDoListInput()
               : buildNoteInput(),
 
           //-----------------------------------------------------------
-          // Single save button with proper validation
+          
 
           MaterialButton(
             
@@ -331,7 +331,8 @@ class NotefieldState extends State<Notefield> {
                   return;
                 }
 
-                setState(() {}); // Show loading state
+                setState(() {}); // refresh the screen to show loading state
+                // update note or save new note
                 if (widget.existingNote != null) {
                   final newNote = Notes(
                     id: widget.existingNote?.id ?? 0,
@@ -349,13 +350,13 @@ class NotefieldState extends State<Notefield> {
                     id: _notesBox.keys.isEmpty
                         ? 0
                         : (_notesBox.keys.last as int) +
-                            1, // Better ID generation
+                            1, 
                     title: _titleController.text,
                     content: _contentController.text,
                     tag: selectedTag,
                   );
 
-                  // Safe box access
+                  // check if the box is open 
                   if (!_notesBox.isOpen) {
                     _notesBox = await Hive.openBox<Notes>('notesBox');
                   }
@@ -376,7 +377,8 @@ class NotefieldState extends State<Notefield> {
                   return;
                 }
 
-                setState(() {}); // Show loading state
+                setState(() {}); // refresh the screen to show loading state
+                // update task or save new task
                 if (widget.existingTODOlist != null) {
                   final newTODOlist = Tasks(
                     id: widget.existingTODOlist?.id ?? 0,
@@ -390,11 +392,12 @@ class NotefieldState extends State<Notefield> {
                   _updateTasks(newTODOlist);
                   Navigator.of(context).pop(true);
                 } else {
+                  // generating new ToDO list
                   final newTODOlist = Tasks(
                     id: _tasksBox.keys.isEmpty
                         ? 0
                         : (_tasksBox.keys.last as int) +
-                            1, // Better ID generation
+                            1, 
                     title: _titleController.text,
                     tasks: tasks,
                     tag: selectedTag,
