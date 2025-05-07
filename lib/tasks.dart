@@ -2,8 +2,11 @@ import 'package:hive/hive.dart';
 
 part "tasks.g.dart";
 
+@HiveType(typeId: 1)
 class Task {
+  @HiveField(0)
   late String content;
+  @HiveField(1)
   late bool completed;
 
   Task({
@@ -12,7 +15,7 @@ class Task {
   });
 }
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class Tasks {
   @HiveField(0)
   int? id;

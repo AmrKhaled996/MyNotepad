@@ -7,6 +7,7 @@ import 'package:test_work_sapce/tasks.dart';
 
 class HiveService {
   static final HiveService _instance = HiveService._internal();
+
   late Box<Notes> _notesBox;
   late Box<Tasks> _tasksBox;
 
@@ -18,6 +19,7 @@ class HiveService {
     await Hive.initFlutter();
     Hive.registerAdapter(NotesAdapter());
     Hive.registerAdapter(TasksAdapter());
+    Hive.registerAdapter(TaskAdapter());
     _notesBox = await Hive.openBox('notebox');
     _tasksBox = await Hive.openBox('taskbox');
   }

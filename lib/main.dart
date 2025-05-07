@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:test_work_sapce/hiveDatabase.dart';
 import 'package:test_work_sapce/homeScreen.dart';
-import 'package:test_work_sapce/noteField.dart';
+// import 'package:test_work_sapce/noteField.dart';
 
 
 void main() async {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gaza NotePad',
       home:Scaffold(
-        body: Notefield()
+        body: HomeScreen()
         ),
     );
   }
