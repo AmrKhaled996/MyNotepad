@@ -258,6 +258,7 @@ class NotefieldState extends State<Notefield> {
       await _notesBox.put(note.id, note);
     }
 
+
     Future<void> _SaveTODOList(Tasks task) async {
       await _tasksBox.put(task.id, task);
     }
@@ -308,7 +309,9 @@ class NotefieldState extends State<Notefield> {
           // Single save button with proper validation
 
           MaterialButton(
+            
             onPressed: () async {
+              
               //---------------------note validation---------------------start
 
               if ((selectedTag == 'Note' || selectedTag == 'Dairy' || selectedTag=='')) {
